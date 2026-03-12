@@ -1,5 +1,5 @@
 {
-  "name": "ralphloop-opencode",
+  "name": "@felipejesus/openloop",
   "version": "0.1.0",
   "description": "Ralph Loop plugin for OpenCode with automatic continuation until completion.",
   "license": "MIT",

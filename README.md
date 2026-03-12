@@ -1,4 +1,4 @@
-# ralphloop-opencode
+# @felipejesus/openloop
 
 Ralph Loop for [OpenCode](https://opencode.ai): start a task once, then let the plugin keep nudging the session forward until it truthfully emits `<promise>DONE</promise>`.
 
@@ -17,7 +17,7 @@ Add the plugin name to your OpenCode config after publishing or installing it as
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["ralphloop-opencode"]
+  "plugin": ["@felipejesus/openloop"]
 }
 ```
 
@@ -55,7 +55,15 @@ GitHub Actions is configured with:
 - `/.github/workflows/ci.yml` to run type-checking and package validation on pushes and pull requests
 - `/.github/workflows/release.yml` to publish to npm and create a GitHub Release when a `v*` tag is pushed
 
-Before the release workflow can publish, add an `NPM_TOKEN` repository secret in GitHub.
+Release migration plan:
+
+1. Publish the first version of `@felipejesus/openloop` with the existing `NPM_TOKEN`
+2. Open the `@felipejesus/openloop` package settings on npm
+3. Add a GitHub Actions trusted publisher
+4. Use `felipepiresdejesus` as the owner, `openloop` as the repository, and `release.yml` as the workflow filename
+5. After trusted publishing is working, delete the old `NPM_TOKEN` GitHub secret
+
+The release workflow is compatible with both stages: npm will use the token for the first publish, then switch to GitHub OIDC once trusted publishing is configured.
 
 To cut a release:
 
